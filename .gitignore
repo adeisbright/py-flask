@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+venv
+.DS_STORE
+__pycache__
+=======
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -127,3 +132,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+>>>>>>> 8a9ecfaa46961d9c570cdf7dc456acdcb245eca2

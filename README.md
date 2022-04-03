@@ -1,2 +1,2 @@
 # py-flask
-Lessons on Flask
+Lessons on Flask and how to build API using Python
