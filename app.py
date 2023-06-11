@@ -1,4 +1,5 @@
-from flask import Flask ,jsonify,request 
+
+from flask import Flask ,jsonify, render_template,request,redirect,url_for , session
 
 
 from products import Product
@@ -6,12 +7,14 @@ from products import Product
 app = Flask(__name__) 
 
 product = Product() 
-
 @app.route("/" , methods = ["GET"]) 
 def get_home():
     product.add_product("Biscuit" , 30 , 500) 
     product.add_product("Biscuit" , 30 , 500) 
+    
+    #session["count"] = 0
     print(product.show_products())
+    
     return "Welcome to the Home Page" 
 
 @app.route("/books" , methods=["GET" , "POST"]) 
@@ -116,6 +119,29 @@ def handle_upload():
         f = request.files["file"]
         f.save(f.filename)
         return "file Uploaded successfully"
+
+@app.route("/templates" , methods=["GET"])
+def get_templates():
+    cities = ["Lagos" , "Kano" , "Port-Harcout"]
+    return render_template(
+        "index.html" , 
+        title="Hello" , 
+        appName="My APP" , 
+        cities = cities
+    )
+
+#Using redirects 
+@app.route("/dashboard/<name>" , methods=["GET"])
+def dashboard(name):
+    count = session["count"] + 1
+    #session.pop("count" , None)
+    return "Welcome {}. Count is {}".format(name , count)
+
+@app.route("/login" , methods=["GET"])
+def login():
+    name = "Adeleke Bright"
+
+    return redirect(url_for("dashboard" , name=name))
 
 if __name__ == "__main__" :
     app.run(host="127.0.0.1" , port=3500 , debug=True) 
