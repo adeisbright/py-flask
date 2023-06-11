@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>{{title}}</title>
+</head>
+<body>
+    {% if appName == "Adeleke" : %}
+        <h1>I love {{appName}}</h1>
+    {% else %}
+        <h1> Not Adeleke </h1>
+    {% endif %}
+    <ul>
+        {% for city in cities: %}
+            <li> {{city}} </li>
+        {% endfor %}
+    </ul>
+    <script src="{{ url_for('static' , filename='/js/index.js') }}"></script>
+</body>
+</html>
